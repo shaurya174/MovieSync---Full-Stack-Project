@@ -6,8 +6,10 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import axios from "axios";
-import { Client } from "pg";
 import "dotenv/config";
+process.env.NODE_OPTIONS = '--dns-result-order=ipv4first';
+import { Client } from "pg";
+
 
 // ========================
 // INITIALIZE APP
