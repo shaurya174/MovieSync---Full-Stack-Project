@@ -1,0 +1,158 @@
+html,
+      body {
+        height: 100%;
+        margin: 0;
+        color: white;
+        font-family: "Segoe UI", sans-serif;
+        position: relative;
+        overflow-x: hidden;
+        background: transparent;
+      }
+
+      /* Vanta Background */
+      #vanta-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+      }
+
+      /* Navbar */
+      .navbar {
+        background-color: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(6px);
+      }
+      .navbar-brand {
+        color: #ff4d4d !important;
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+      .nav-link {
+        color: white !important;
+        margin-right: 1rem;
+        transition: color 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #ff4d4d !important;
+      }
+
+      /* Footer */
+      footer {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        text-align: center;
+        padding: 15px 10px;
+        font-size: 0.95rem;
+        margin-top: 40px;
+        z-index: 1;
+      }
+      footer span {
+        color: #ff4d4d;
+        font-weight: 500;
+      }
+
+      /* Section heading */
+      .section-title {
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        text-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Glassy movie card */
+      .movie-card {
+        position: relative;
+        border: 0;
+        border-radius: 22px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        height: 100%;
+      }
+      .movie-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      }
+
+      .poster-wrap {
+        position: relative;
+        width: 100%;
+        padding-top: 150%; /* aspect ratio */
+        background-size: cover;
+        background-position: center;
+        filter: saturate(1.05) contrast(1.05);
+      }
+      .poster-gradient {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.85) 0%,
+          rgba(0, 0, 0, 0.2) 55%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+      .badge-chip {
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: #fff;
+        font-weight: 500;
+        border-radius: 999px;
+        padding: 4px 10px;
+        margin-right: 6px;
+        margin-bottom: 6px;
+        display: inline-block;
+        font-size: 0.75rem;
+        white-space: nowrap;
+      }
+      .rating-pill {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: rgba(0, 0, 0, 0.65);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .card-body {
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        text-align: left;
+        padding: 16px;
+      }
+      .movie-title {
+        font-weight: 700;
+      }
+      .tagline {
+        opacity: 0.85;
+        font-style: italic;
+      }
+      .story {
+        opacity: 0.95;
+        line-height: 1.45;
+      }
+      .btn-ghost {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #fff;
+        border-radius: 999px;
+        padding: 6px 12px;
+      }
+      .btn-ghost:hover {
+        border-color: #ff4d4d;
+        color: #ffb3b3;
+      }
+
+      .movies-grid {
+        row-gap: 24px;
+      }

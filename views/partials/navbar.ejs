@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark px-4 py-2 shadow-sm">
+  <a class="navbar-brand" href="/home">MovieSync</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#movieNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="movieNavbar">
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <li class="nav-item"><a class="nav-link active" href="/home">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/trending">Trending</a></li>
+      <li class="nav-item"><a class="nav-link" href="/watchlist">Watchlist</a></li>
+      <li class="nav-item"><a class="nav-link" href="/reviews">Reviews</a></li>
+      <li class="nav-item"><a class="nav-link" href="/news">News</a></li>
+      <li class="nav-item"><a class="nav-link" href="/recommendations">Recommendations</a></li>
+      <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+    </ul>
+
+    <form class="d-flex ms-lg-3 search-form" method="get" action="/search">
+        <input class="form-control me-2 search-input" type="search" name="search_query" placeholder="Search Movie..." aria-label="Search" />
+        <button class="btn btn-outline-danger" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+  </div>
+</nav>

@@ -1,0 +1,271 @@
+<%-include('partials/header')%>
+    <!-- Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="/css/hstyle.css">
+  </head>
+  <body>
+    <!-- Vanta Background -->
+    <div id="vanta-bg"></div>
+
+    <!-- 🌟 Navbar -->
+    <%- include('partials/navbar') %>
+
+    <!-- 🌟 Main Content -->
+    <div id="main-content">
+      <section class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title">MovieSync</h1>
+          <h2 class="hero-subtitle">ALL IN ONE MOVIE APP</h2>
+          <p class="hero-desc">Starts At 0 Rs and Finishes at 0 Rs</p>
+          <p class="hero-info">
+            MovieSync is your ultimate destination for everything related to
+            cinema. It is more than just a website—it is a vision to create a
+            platform where movie lovers can not only keep track of the films
+            they’ve watched but also discover new ones to enjoy. With MovieSync,
+            users can explore trending movies, build personalized watchlists,
+            share detailed reviews, receive tailored recommendations, and stay
+            updated with the latest movie news. In essence, MovieSync brings you
+            a comprehensive movie database combined with smart features to make
+            your movie journey memorable and engaging.
+          </p>
+        </div>
+      </section>
+      <section class="reasons-section py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">🚀 Reasons to Use MovieSync</h2>
+          <div class="row g-4">
+            <!-- Box 1 -->
+            <div class="col-md-6 col-lg-3">
+              <div class="reason-box text-center p-4 h-100">
+                <i class="bi bi-display icon"></i>
+                <h5 class="mt-3">Cool UI</h5>
+                <p>Enjoy a sleek, modern and user-friendly interface.</p>
+              </div>
+            </div>
+
+            <!-- Box 2 -->
+            <div class="col-md-6 col-lg-3">
+              <div class="reason-box text-center p-4 h-100">
+                <i class="bi bi-search icon"></i>
+                <h5 class="mt-3">Search Every Movie</h5>
+                <p>Find movies from a vast collection instantly.</p>
+              </div>
+            </div>
+
+            <!-- Box 3 -->
+            <div class="col-md-6 col-lg-3">
+              <div class="reason-box text-center p-4 h-100">
+                <i class="bi bi-bookmark-heart icon"></i>
+                <h5 class="mt-3">Make Watchlist</h5>
+                <p>Save movies you want to watch later.</p>
+              </div>
+            </div>
+
+            <!-- Box 4 -->
+            <div class="col-md-6 col-lg-3">
+              <div class="reason-box text-center p-4 h-100">
+                <i class="bi bi-pencil-square icon"></i>
+                <h5 class="mt-3">Write Reviews</h5>
+                <p>Share your thoughts and rate your favorite movies.</p>
+              </div>
+            </div>
+
+            <!-- Box 5 -->
+            <div class="col-md-6 col-lg-3">
+              <div class="reason-box text-center p-4 h-100">
+                <i class="bi bi-people icon"></i>
+                <h5 class="mt-3">Connect with Me</h5>
+                <p>Join the MovieSync community and stay connected.</p>
+              </div>
+            </div>
+
+            <!-- Box 6 -->
+            <div class="col-md-6 col-lg-3">
+              <div class="reason-box text-center p-4 h-100">
+                <i class="bi bi-fire icon"></i>
+                <h5 class="mt-3">Trending Movies</h5>
+                <p>Stay updated with the top trending movies.</p>
+              </div>
+            </div>
+
+            <!-- Box 7 -->
+            <div class="col-md-6 col-lg-3">
+              <div class="reason-box text-center p-4 h-100">
+                <i class="bi bi-newspaper icon"></i>
+                <h5 class="mt-3">Latest Movie News</h5>
+                <p>Catch up on the latest updates in cinema.</p>
+              </div>
+              \n
+            </div>
+
+            <!-- Box 8 -->
+            <div class="col-md-6 col-lg-3">
+              <div class="reason-box text-center p-4 h-100">
+                <i class="bi bi-app icon"></i>
+                <h5 class="mt-3">All in One App</h5>
+                <p>One place for all your movie needs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="faq-section">
+        <h2 class="text-center mb-4">❓ Frequently Asked Questions</h2>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-question">
+            <span>What is MovieSync?</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer animate__animated animate__fadeIn">
+            MovieSync is your ultimate destination for everything related to
+            cinema. It is more than just a website—it is a vision to create a
+            platform where movie lovers can not only keep track of the films
+            they’ve watched but also discover new ones to enjoy. With MovieSync,
+            users can explore trending movies, build personalized watchlists,
+            share detailed reviews, receive tailored recommendations, and stay
+            updated with the latest movie news. In essence, MovieSync brings you
+            a comprehensive movie database combined with smart features to make
+            your movie journey memorable and engaging.
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-question">
+            <span>How do I get recommendations?</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer animate__animated animate__fadeIn">
+            Simply use the search feature to add movies to your watchlist, and
+            MovieSync will automatically generate personalized recommendations
+            for you. You can easily view these suggestions by navigating to the
+            “Recommendations” tab, ensuring that you always find the perfect
+            movie to watch next.You can even add those recommendations to
+            watchlist.
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-question">
+            <span>Is MovieSync free to use?</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer animate__animated animate__fadeIn">
+            Yes, MovieSync is absolutely free to use! We won’t charge you a
+            single rupee, dollar, or even a bucket of popcorn. All you need is
+            your love for movies—because honestly, if we charged people for
+            binge-watching, we’d all be broke by now
+          </div>
+        </div>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-question">
+            <span>What’s the Trending Page on MovieSync?</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer animate__animated animate__fadeIn">
+            The Trending Page is where all the action happens! It shows you the
+            hottest movies that everyone’s talking about right now. Think of it
+            as the red carpet of MovieSync—only without the paparazzi, awkward
+            interviews, and questionable fashion choices.
+          </div>
+        </div>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-question">
+            <span
+              >Can I sort movies on the Trending Page by popularity or release
+              date?</span
+            >
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer animate__animated animate__fadeIn">
+            Absolutely! On MovieSync’s Trending Page, you’re the boss. Want to
+            see what’s breaking the internet? Sort by popularity. Prefer to
+            check out the freshest releases? Sort by release date. Either way,
+            you’ll never have to scroll endlessly wondering what to watch—unless
+            scrolling is your hobby.
+          </div>
+        </div>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-question">
+            <span>How do I make a watchlist on MovieSync?</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer animate__animated animate__fadeIn">
+            Easy-peasy! Just search for your favorite movie, and when you spot
+            it, hit the magical “Add to Watchlist” button. Boom—it’s saved. No
+            need for sticky notes on your fridge or scribbles on your hand
+            anymore. MovieSync’s got your movie plans sorted (and way more
+            organized than your Netflix password list).
+          </div>
+        </div>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-question">
+            <span>Can I write, save, and edit reviews of my movies?</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer animate__animated animate__fadeIn">
+            Absolutely! MovieSync lets you write your thoughts, save them, and
+            even edit later if you suddenly realize calling that action movie “a
+            masterpiece of tears” was a bit dramatic. Your reviews, your rules!
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-question">
+            <span>How do I contact you?</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer animate__animated animate__fadeIn">
+            Easy! Just head over to the Contact Page—you can connect with me on
+            LinkedIn, GitHub, or drop me an email. Don’t worry, I actually check
+            them (well, most of the time).
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-question">
+            <span>Can I search for any movie?</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer animate__animated animate__fadeIn">
+            Yes! From Hollywood blockbusters to that one indie film your friend
+            swears changed their life—if it exists, MovieSync will help you find
+            it.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <%-include('partials/footer')%>
+
+    <!-- Scripts -->
+    
+
+      // FAQ toggle
+      function toggleFAQ(element) {
+        const answer = element.querySelector(".faq-answer");
+        const icon = element.querySelector(".icon");
+
+        if (answer.style.display === "block") {
+          answer.style.display = "none";
+          icon.textContent = "+";
+        } else {
+          // Close all other answers
+          document
+            .querySelectorAll(".faq-answer")
+            .forEach((ans) => (ans.style.display = "none"));
+          document
+            .querySelectorAll(".icon")
+            .forEach((ic) => (ic.textContent = "+"));
+
+          // Open this one
+          answer.style.display = "block";
+          icon.textContent = "x";
+        }
+      }
+    </script>
+  </body>
+</html>

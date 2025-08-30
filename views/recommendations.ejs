@@ -1,0 +1,73 @@
+<%- include('partials/header') %>
+    <link rel="stylesheet" href="/css/rstyle.css" />
+  </head>
+  <body>
+    <!-- 🌌 Vanta Background -->
+    <div id="vanta-bg"></div>
+
+    <%- include('partials/navbar') %>
+
+    <div class="container mt-5">
+      <h2 class="mb-4 text-center fw-bold">🔥 Your Recommendations</h2>
+      <div class="row g-4">
+        <% movies.forEach(movie => { %>
+        <div class="col-md-4 col-sm-6">
+          <div class="movie-card h-100">
+            <img
+              src="<%= movie.poster_path 
+          ? 'https://image.tmdb.org/t/p/w500' + movie.poster_path 
+          : '/images/default-poster.jpg' %>"
+              alt="<%= movie.title %>"
+              class="img-fluid w-100"
+            />
+
+            <div class="movie-card-body">
+              <h5 class="movie-title"><%= movie.title %></h5>
+              <p><strong>Release:</strong> <%= movie.release_date %></p>
+              <p>
+                <strong>Rating:</strong> ⭐ <%= movie.vote_average %> (<%=
+                movie.vote_count %> votes)
+              </p>
+              <p class="movie-overview"><%= movie.overview %></p>
+              <button
+                class="btn btn-danger w-100 mt-2 add-watchlist"
+                data-id="<%= movie.id %>"
+              >
+                <i class="bi bi-plus-circle"></i> Add to Watchlist
+              </button>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <%- include('partials/footer') %>
+      // Add to Watchlist
+      document.querySelectorAll(".add-watchlist").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const movieId = btn.getAttribute("data-id");
+          try {
+            const res = await fetch("/watchlist", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ movie_id: movieId }),
+            });
+            const data = await res.json();
+            Swal.fire({
+              icon: "success",
+              title: data.message,
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          } catch (err) {
+            Swal.fire({
+              icon: "error",
+              title: "Failed to add movie!",
+              text: err.message,
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

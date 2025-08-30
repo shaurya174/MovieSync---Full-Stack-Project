@@ -1,0 +1,132 @@
+html, body {
+      height: 100%;
+      margin: 0;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    #vanta-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+
+    .navbar-brand {
+      color: #ff4d4d !important;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .nav-link {
+      color: white !important;
+      margin-right: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #ff4d4d !important;
+    }
+
+    .search-input {
+      border-radius: 20px;
+      padding: 5px 15px;
+    }
+
+    .search-form {
+      display: flex;
+      align-items: center;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.95rem;
+      margin-top: 40px;
+      z-index: 1;
+    }
+
+    footer span {
+      color: #ff4d4d;
+      font-weight: 500;
+    }
+    .movie-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.25); /* transparent card */
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+  }
+
+  .movie-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(255, 77, 77, 0.5);
+  }
+
+  .movie-backdrop {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    filter: brightness(0.6);
+    transition: transform 0.3s ease;
+  }
+
+  .movie-card:hover .movie-backdrop {
+    transform: scale(1.05);
+  }
+
+  .movie-poster {
+    width: 100px;
+    border-radius: 10px;
+    position: absolute;
+    top: 150px;
+    left: 20px;
+    border: 2px solid #ff4d4d;
+    transition: transform 0.3s ease;
+  }
+
+  .movie-card:hover .movie-poster {
+    transform: scale(1.05);
+  }
+
+  .card-content {
+    margin-top: 60px;
+    padding-left: 140px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+
+  .btn-watchlist {
+    background-color: #ff4d4d;
+    border: none;
+    transition: background 0.3s ease;
+  }
+
+  .btn-watchlist:hover {
+    background-color: #ff1a1a;
+  }
+
+  @media (max-width: 768px) {
+    .movie-poster {
+      position: static;
+      width: 80px;
+      margin-bottom: 10px;
+      border: 1px solid #ff4d4d;
+    }
+    .card-content {
+      margin-top: 0;
+      padding-left: 0;
+    }
+  }

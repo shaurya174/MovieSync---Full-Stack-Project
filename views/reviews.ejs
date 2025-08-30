@@ -1,0 +1,81 @@
+<%-include('partials/header')%>
+  <link rel="stylesheet" href="./css/rrstyle.css">
+</head>
+<body>
+  <!-- 🌌 Vanta Background -->
+  <div id="vanta-bg"></div>
+
+  <!-- 🌟 Navbar -->
+  <%-include('partials/navbar')%>
+
+  <!-- 🔥 Reviews Section -->
+  <div class="container my-5">
+  <h2 class="text-center mb-5">🎬 Your Watchlist & Reviews</h2>
+
+  <% if (movies && movies.length > 0) { %>
+    <% movies.forEach(movie => { %>
+      <div class="movie-card row align-items-center p-3">
+        
+        <!-- Poster -->
+        <div class="col-md-4">
+          <% if (movie.poster_path) { %>
+            <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" 
+                 alt="<%= movie.title %>" 
+                 class="img-fluid rounded shadow">
+          <% } else { %>
+            <p>No image available</p>
+          <% } %>
+        </div>
+
+        <!-- Info -->
+        <div class="col-md-4 movie-info">
+          <h3 class="movie-title"><%= movie.title %></h3>
+          <p><strong>Release Date:</strong> <%= movie.release_date %></p>
+          <p class="movie-overview"><%= movie.overview %></p>
+        </div>
+
+        <!-- Review -->
+        <div class="col-md-4 review-box">
+          <form action="/reviews/save" method="POST">
+            <input type="hidden" name="id" value="<%= movie.id %>">
+            <textarea name="review" id="review-<%= movie.id %>" readonly>
+              <%= movie.review || "Enter Your Thoughts" %>
+            </textarea>
+
+            <div class="review-actions">
+              <button type="button" class="btn btn-sm btn-outline-light" onclick="enableEdit('<%= movie.id %>')">Edit</button>
+              <button type="submit" class="btn btn-sm btn-danger">Save</button>
+              <button type="button" class="btn btn-sm btn-secondary" onclick="cancelEdit('<%= movie.id %>', '<%= movie.review || "Enter Your Thoughts" %>')">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    <% }) %>
+  <% } else { %>
+    <p class="text-center">No movies in your watchlist yet.</p>
+  <% } %>
+</div>
+
+
+  <!-- Footer -->
+   <%-include('partials/footer')%>
+
+  <!-- Scripts -->
+  
+
+    function enableEdit(id) {
+      const textarea = document.getElementById(`review-${id}`);
+      textarea.removeAttribute("readonly");
+      textarea.focus();
+    }
+
+    function cancelEdit(id, prevValue) {
+      const textarea = document.getElementById(`review-${id}`);
+      textarea.value = prevValue;
+      textarea.setAttribute("readonly", true);
+    }
+  </script>
+</body>
+</html>
+

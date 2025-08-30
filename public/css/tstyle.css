@@ -1,0 +1,135 @@
+html, body {
+      height: 100%;
+      margin: 0;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    #vanta-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+
+    .navbar-brand {
+      color: #ff4d4d !important;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .nav-link {
+      color: white !important;
+      margin-right: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #ff4d4d !important;
+    }
+
+    .search-input {
+      border-radius: 20px;
+      padding: 5px 15px;
+    }
+
+    .search-form {
+      display: flex;
+      align-items: center;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.95rem;
+      margin-top: 40px;
+      z-index: 1;
+    }
+
+    footer span {
+      color: #ff4d4d;
+      font-weight: 500;
+    }
+
+    .movie-card {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      background-color: #121212;
+      position: relative;
+    }
+
+    .movie-backdrop {
+      position: relative;
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .backdrop-overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
+    }
+
+    .rank-number {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #e50914;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 16px;
+      z-index: 2;
+    }
+
+    .poster {
+      position: absolute;
+      bottom: -40px;
+      left: 20px;
+      width: 80px;
+      border-radius: 8px;
+      border: 3px solid #fff;
+      z-index: 2;
+    }
+
+    .movie-content {
+      padding: 60px 20px 20px;
+      background-color: #1c1c1c;
+      min-height: 200px;
+    }
+
+    .movie-title {
+      font-size: 18px;
+      margin: 0 0 8px;
+    }
+
+    .movie-info {
+      font-size: 13px;
+      color: #ccc;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .movie-overview {
+      font-size: 13px;
+      color: #ddd;
+      line-height: 1.4;
+    }

@@ -1,0 +1,85 @@
+html, body {
+      height: 100%;
+      margin: 0;
+      color: white;
+      font-family: "Segoe UI", sans-serif;
+      position: relative;
+      overflow-x: hidden;
+      background: transparent;
+    }
+
+    /* Vanta Background */
+    #vanta-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+    }
+    .navbar-brand {
+      color: #ff4d4d !important;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .nav-link {
+      color: white !important;
+      margin-right: 1rem;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #ff4d4d !important;
+    }
+
+    /* Footer */
+    footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.95rem;
+      margin-top: 40px;
+      z-index: 1;
+    }
+    footer span {
+      color: #ff4d4d;
+      font-weight: 500;
+    }
+
+    /* Movie Cards */
+    .movie-card {
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 77, 77, 0.5);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+    .movie-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(255, 77, 77, 0.3);
+    }
+    .movie-card img {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      height: 400px;
+      object-fit: cover;
+    }
+    .movie-card-body {
+      padding: 15px;
+    }
+    .movie-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #ff4d4d;
+    }
+    .movie-overview {
+      font-size: 0.9rem;
+      color: #ddd;
+      max-height: 80px;
+      overflow: hidden;
+    }

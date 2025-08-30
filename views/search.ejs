@@ -1,0 +1,115 @@
+<%-include('partials/header')%>
+  <link rel="stylesheet" href="/css/sstyle.css">
+</head>
+<body>
+  <div id="vanta-bg"></div>
+
+  <!-- 🌟 Navbar -->
+  <%- include('partials/navbar') %>
+
+  <div class="container my-5">
+    <h2 class="mb-4">You Searched For <span class="text-danger"><%=see%></span></h2>
+    <div class="row" id="movies-grid"></div>
+  </div>
+
+  <!-- ✅ Toast Container (BIGGER + Noticeable) -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
+    <div id="watchlistToast" 
+         class="toast align-items-center text-bg-success border-0 shadow-lg p-3 fs-5" 
+         role="alert" 
+         data-bs-delay="4000"
+         style="min-width: 350px; border-radius: 1rem;">
+      <div class="d-flex">
+        <div class="toast-body fw-bold">
+          ✅ Movie added to Watchlist!
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Created By <span>Shaurya Mittal</span><br>
+    &copy; 2025 MovieSync — All rights reserved.
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const genresMap = {
+        28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy", 80: "Crime",
+        99: "Documentary", 18: "Drama", 10751: "Family", 14: "Fantasy", 36: "History",
+        27: "Horror", 10402: "Music", 9648: "Mystery", 10749: "Romance", 878: "Science Fiction",
+        10770: "TV Movie", 53: "Thriller", 10752: "War", 37: "Western"
+      };
+
+      const moviesGrid = document.getElementById("movies-grid");
+      const movies = <%- JSON.stringify(movies) %>;
+
+      // 🎬 Render movie cards
+      movies.forEach(movie => {
+        const genreNames = movie.genre_ids.map(id => genresMap[id]).join(", ");
+        const card = document.createElement("div");
+        card.className = "col-lg-4 col-md-6 mb-4";
+        card.innerHTML = `
+          <div class="movie-card h-100">
+            <img src="https://image.tmdb.org/t/p/w780${movie.backdrop_path}" alt="${movie.title}" class="movie-backdrop">
+            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" class="movie-poster">
+            <div class="card-content">
+              <h5>${movie.title}</h5>
+              <p><strong>Release:</strong> ${movie.release_date}</p>
+              <p><strong>Overview:</strong> ${movie.overview || "No overview available."}</p>
+              <p><strong>Rating:</strong> ${movie.vote_average} ⭐</p>
+              <p><strong>Genres:</strong> ${genreNames}</p>
+              <button class="btn btn-watchlist w-100" data-id="${movie.id}" data-title="${movie.title}">Add to Watchlist</button>
+            </div>
+          </div>
+        `;
+        moviesGrid.appendChild(card);
+      });
+
+      // ✅ Bootstrap toast setup
+      const toastEl = document.getElementById("watchlistToast");
+      const toast = new bootstrap.Toast(toastEl);
+
+      moviesGrid.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("btn-watchlist")) {
+          const movieId = e.target.dataset.id;
+          const movieTitle = e.target.dataset.title;
+
+          // send to backend
+          await fetch("/watchlist", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ movie_id: movieId })
+          });
+
+          // ✅ Update toast message dynamically
+          toastEl.querySelector(".toast-body").textContent = `✅ ${movieTitle} added to Watchlist!`;
+          toast.show();
+        }
+      });
+
+      // 🎨 Background animation
+      VANTA.NET({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0xff4d4d,
+        backgroundColor: 0x000000,
+        points: 12.00,
+        maxDistance: 20.00,
+        spacing: 15.00
+      });
+    });
+  </script>
+</body>
+</html>

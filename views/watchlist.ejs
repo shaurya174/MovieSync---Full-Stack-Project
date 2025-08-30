@@ -1,0 +1,149 @@
+<%-include('partials/header.ejs')%>
+    <link rel="stylesheet" href="/css/wstyle.css">
+  </head>
+  <body>
+    <!-- 🌌 Vanta Background -->
+    <div id="vanta-bg"></div>
+
+    <!-- Navbar (EJS include) -->
+    <%- include('partials/navbar') %>
+
+    <!-- ======= MAIN CONTENT ======= -->
+    <main class="container">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h1 class="section-title m-0">Your Watchlist</h1>
+      </div>
+      <div id="moviesRow" class="row movies-grid">
+        <!-- Cards injected by JS -->
+      </div>
+    </main>
+
+    <!-- 🌙 Footer -->
+
+    <!-- Bootstrap + Vanta -->
+    <%-include('partials/footer')%>
+    </script>
+
+    <!-- ======= DATA + RENDER LOGIC ======= -->
+    <script>
+      const movies = <%- JSON.stringify(movies) %>;
+
+      function minutesToHhMm(mins) {
+        if (!mins && mins !== 0) return "";
+        const h = Math.floor(mins / 60);
+        const m = mins % 60;
+        return `${h}h ${String(m).padStart(2, "0")}m`;
+      }
+      function getYear(dateStr) {
+        return dateStr ? new Date(dateStr).getFullYear() : "";
+      }
+      function renderGenres(genres = []) {
+        return genres.map((g) => g.name).join(" · ");
+      }
+      function primaryCountry(countries = [], origin = []) {
+        if (countries.length) return countries[0].name || countries[0].iso_3166_1 || "";
+        if (origin.length) return origin[0];
+        return "";
+      }
+      function languageName(langs = [], fallback = "") {
+        if (langs.length) return langs[0].english_name || langs[0].name || fallback;
+        return fallback;
+      }
+      function imageUrl(path) {
+        return path ? `https://image.tmdb.org/t/p/w500${path}` : "";
+      }
+
+      function makeInfoBlock(m) {
+        return {
+          title: m.title || m.original_title || "Untitled",
+          year: getYear(m.release_date),
+          genreText: renderGenres(m.genres),
+          runtimeText: minutesToHhMm(m.runtime),
+          rating: (m.vote_average ?? "").toString(),
+          tagline: m.tagline || "",
+          story: m.overview || "",
+          country: primaryCountry(m.production_countries, m.origin_country),
+          lang: languageName(m.spoken_languages, m.original_language),
+        };
+      }
+
+      function cardTemplate(m) {
+        const info = makeInfoBlock(m);
+        const poster = imageUrl(m.poster_path) || imageUrl(m.backdrop_path);
+        const genresChips = (m.genres || [])
+          .map((g) => `<span class="badge-chip">${g.name}</span>`)
+          .join("");
+
+        return `
+          <div class="col-12 col-sm-6 col-lg-4">
+            <article class="card movie-card h-100">
+              <div class="poster-wrap" style="background-image:url('${poster}')">
+                <div class="poster-gradient"></div>
+                <div class="rating-pill">
+                  <i class="bi bi-star-fill"></i> ${info.rating}/10
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="movie-title mb-1">${info.title} ${info.year ? `(${info.year})` : ""}</h5>
+                <div class="movie-sub small mb-2">
+                  ${info.genreText}${info.runtimeText ? ` · ${info.runtimeText}` : ""}
+                </div>
+                ${info.tagline ? `<div class="tagline mb-2">${info.tagline}</div>` : ""}
+                ${info.story ? `<p class="story small mb-3">${info.story}</p>` : ""}
+                <div class="d-flex flex-wrap mb-2">${genresChips}</div>
+                <div class="meta-row d-flex align-items-center gap-3 small">
+                  <span><i class="bi bi-geo-alt"></i> ${info.country || "-"}</span>
+                  <span><i class="bi bi-translate"></i> ${info.lang || "-"}</span>
+                </div>
+              </div>
+              <button class="btn btn-danger remove-btn" data-id="${m.id}" data-title="${m.title}">
+                Remove From Watchlist
+              </button>
+            </article>
+          </div>`;
+      }
+
+      function renderMovies(list) {
+        const row = document.getElementById("moviesRow");
+        row.innerHTML = list.map(cardTemplate).join("");
+      }
+
+      // Init render
+      renderMovies(movies);
+
+      // Delete movie handler
+      document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("remove-btn")) {
+          const movieId = e.target.getAttribute("data-id");
+          const movieTitle = e.target.getAttribute("data-title");
+
+          const result = await Swal.fire({
+            title: `Remove "${movieTitle}" from your watchlist?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, remove it!",
+            cancelButtonText: "Cancel",
+          });
+
+          if (result.isConfirmed) {
+            const res = await fetch(`/watchlist/${movieId}`, { method: "DELETE" });
+            const data = await res.json();
+
+            if (data.success) {
+              e.target.closest(".col-12.col-sm-6.col-lg-4").remove();
+              Swal.fire({
+                icon: "success",
+                title: "Removed!",
+                text: `"${movieTitle}" has been removed from your watchlist.`,
+                showConfirmButton: false,
+                timer: 2000,
+              });
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

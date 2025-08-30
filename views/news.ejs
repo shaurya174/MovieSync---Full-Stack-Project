@@ -1,0 +1,63 @@
+<%-include('partials/header')%>
+  <link rel="stylesheet" href="/css/nstyle.css">
+</head>
+<body>
+  <!-- Vanta Background -->
+  <div id="vanta-bg"></div>
+
+  <!-- Navbar -->
+  <%- include('partials/navbar') %>
+
+  <div id="main-content" class="container-fluid">
+  <div class="row full-height">
+    <!-- Left: Scrollable News List -->
+    <div class="col-md-3" id="news-list">
+      <!-- JS will populate news items here -->
+    </div>
+
+    <!-- Right: News Card -->
+    <div class="col-md-9" id="news-card">
+      <h2>Select a news item</h2>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <%-include('partials/footer')%>
+  // Sample 20 news objects
+  const newsData = <%- JSON.stringify(newsss) %>;
+
+  const newsList = document.getElementById('news-list');
+  const newsCard = document.getElementById('news-card');
+
+  newsData.forEach(news => {
+    const item = document.createElement('div');
+    item.className = 'news-item';
+    item.innerHTML = `<strong>${news.title}</strong><br>
+                      <span>Published on: ${news.publishedAt}</span><br>
+                      <span>Author: ${news.author}</span>`;
+    item.addEventListener('click', () => displayNews(news, item));
+    newsList.appendChild(item);
+  });
+
+  function displayNews(news, selectedItem) {
+    // Remove previous active
+    document.querySelectorAll('.news-item').forEach(i => i.classList.remove('active'));
+    selectedItem.classList.add('active');
+
+    newsCard.innerHTML = `
+      <img src="${news.urlToImage}" alt="${news.title}">
+      <div class="news-title">${news.title}</div>
+      <div class="news-meta">
+        | Published: ${news.publishedAt} | Author: ${news.author}
+      </div>
+      <div class="news-description">${news.description}</div>
+      <a href="${news.url}" target="_blank" class="btn btn-danger news-button">Read Full Article</a>
+    `;
+  }
+
+
+  </script>
+</body>
+</html>

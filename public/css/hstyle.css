@@ -1,0 +1,262 @@
+html,
+      body {
+        height: 100%;
+        margin: 0;
+        color: white;
+        font-family: "Segoe UI", sans-serif;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #vanta-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+      }
+
+      .navbar {
+        background-color: rgba(0, 0, 0, 0.85);
+      }
+
+      .navbar-brand {
+        color: #ff4d4d !important;
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+
+      .nav-link {
+        color: white !important;
+        margin-right: 1rem;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #ff4d4d !important;
+      }
+
+      .search-input {
+        border-radius: 20px;
+        padding: 5px 15px;
+      }
+
+      .search-form {
+        display: flex;
+        align-items: center;
+      }
+
+      #main-content {
+        flex: 1;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+
+      footer {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        text-align: center;
+        padding: 15px 10px;
+        font-size: 0.95rem;
+        z-index: 1;
+      }
+
+      footer span {
+        color: #ff4d4d;
+        font-weight: 500;
+      }
+
+      /* FAQ Section */
+      .faq-section {
+        background: transparent;
+        padding: 50px 20px;
+        max-width: 800px;
+        margin: auto;
+      }
+      .faq-item {
+        background: rgba(20, 20, 20, 0.95);
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        margin-bottom: 15px;
+        padding: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: #f1f1f1;
+      }
+      .faq-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+      }
+      .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #ffffff;
+      }
+      .faq-answer {
+        display: none;
+        margin-top: 15px;
+        color: #cccccc;
+        line-height: 1.6;
+      }
+      .icon {
+        font-size: 1.4rem;
+        transition: transform 0.3s ease;
+        color: #ff4d4d;
+      }
+      .reasons-section {
+        background: transparent;
+      }
+      .reason-box {
+        background: rgba(20, 20, 20, 0.95);
+        border-radius: 12px;
+        color: #f1f1f1;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .reason-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+      }
+      .reason-box .icon {
+        font-size: 2rem;
+        color: #ff4d4d;
+      }
+      .hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background: url("/img/heros.jpg") no-repeat center center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6); /* dark overlay */
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        padding: 20px;
+      }
+
+      .hero-title {
+        font-size: 4rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .hero-subtitle {
+        font-size: 2rem;
+        margin-bottom: 15px;
+      }
+
+      .hero-desc {
+        font-size: 1.2rem;
+        margin-bottom: 25px;
+      }
+
+      .hero-cta .btn {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 12px 24px;
+        border-radius: 6px;
+        background: #e50914;
+        color: white;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: background 0.3s ease;
+      }
+
+      .hero-cta .btn:hover {
+        background: #b20710;
+      }
+      .hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background: url("/img/heros.jpg") no-repeat center center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 40px;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6); /* dark overlay */
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 900px;
+        padding: 20px;
+      }
+
+      .hero-title {
+        font-size: 4.5rem; /* slightly bigger */
+        font-weight: 800; /* more bold */
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      .hero-subtitle {
+        font-size: 2.2rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #ffcc00; /* highlight color */
+      }
+
+      .hero-desc {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 25px;
+      }
+
+      .hero-info {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        opacity: 0.9;
+        margin-bottom: 30px;
+      }
+
+      .hero-cta .btn {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 12px 24px;
+        border-radius: 8px;
+        background: #e50914;
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      .hero-cta .btn:hover {
+        background: #b20710;
+        transform: scale(1.05); /* hover lift */
+      }

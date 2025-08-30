@@ -1,0 +1,77 @@
+html, body {
+      height: 100%;
+      margin: 0;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+    }
+    #vanta-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+    .navbar-brand {
+      color: #ff4d4d !important;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .nav-link {
+      color: white !important;
+      margin-right: 1rem;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #ff4d4d !important;
+    }
+    .movie-card {
+      background-color: rgba(0,0,0,0.7);
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .movie-info {
+      padding: 20px;
+    }
+    .movie-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff4d4d;
+    }
+    .movie-overview {
+      font-size: 0.95rem;
+      color: #ddd;
+      margin-top: 10px;
+    }
+    .review-box textarea {
+      width: 100%;
+      min-height: 120px;
+      border-radius: 10px;
+      padding: 10px;
+      border: none;
+      outline: none;
+      resize: none;
+    }
+    .review-actions {
+      margin-top: 10px;
+    }
+    footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.95rem;
+      margin-top: 40px;
+      z-index: 1;
+    }
+    footer span {
+      color: #ff4d4d;
+      font-weight: 500;
+    }
