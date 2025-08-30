@@ -1,13 +1,14 @@
 // ========================
 // IMPORTS
 // ========================
+process.env.NODE_OPTIONS = '--dns-result-order=ipv4first';
 import express, { response } from "express";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import axios from "axios";
 import "dotenv/config";
-process.env.NODE_OPTIONS = '--dns-result-order=ipv4first';
+
 import { Client } from "pg";
 
 
