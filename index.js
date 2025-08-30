@@ -24,8 +24,13 @@ const port = process.env.PORT || 3000;
 // ========================
 
 const db = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false } // <-- Required for Supabase
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
+  ssl: { rejectUnauthorized: false },
+  family: 4
 });
 
 db.connect()
