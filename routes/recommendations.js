@@ -1,16 +1,16 @@
-// routes/recommendations.js
 import express from "express";
 import axios from "axios";
+import sql from "../db.js"; // postgres client
 
 const router = express.Router();
 
-export default function (db, TMDB_KEY) {
+export default function (TMDB_KEY) {
   // GET /recommendations
   router.get("/", async (req, res) => {
     try {
       // 1️⃣ Fetch movie_ids from watchlist table
-      const watchlistIdsResult = await db.query("SELECT id FROM watchlist");
-      const watchlistIds = watchlistIdsResult.rows.map((row) => row.id);
+      const watchlistRows = await sql`SELECT id FROM watchlist`;
+      const watchlistIds = watchlistRows.map(row => row.id);
 
       // 2️⃣ Count genres from these movies
       const genreCount = {};
@@ -65,4 +65,5 @@ export default function (db, TMDB_KEY) {
   });
 
   return router;
-}
+};
+
