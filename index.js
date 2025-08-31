@@ -90,6 +90,8 @@ import homeRoutes from "./routes/home.js";
 // ========================
 // ROUTES SETUP
 // ========================
+
+app.use("/", homeRoutes);
 app.use("/home", homeRoutes);
 app.use("/reviews", reviewsRoutes(sql, TMDB_KEY));
 app.use("/trending", trendingRoutes(TMDB_KEY, genreList));
