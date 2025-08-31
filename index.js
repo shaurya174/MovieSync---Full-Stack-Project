@@ -9,8 +9,6 @@ import bodyParser from "body-parser";
 import axios from "axios";
 import "dotenv/config";
 
-import { Client } from "pg";
-
 
 // ========================
 // INITIALIZE APP
