@@ -23,19 +23,27 @@ const port = process.env.PORT || 3000;
 // DATABASE SETUP
 // ========================
 
+
+import { Client } from "pg";
+
+// Force IPv4 DNS resolution (keep this at the very top)
+process.env.NODE_OPTIONS = '--dns-result-order=ipv4first';
+
 const db = new Client({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
-  ssl: { rejectUnauthorized: false },
-  family: 4
+  host: process.env.DB_HOST,      // Supabase host
+  user: process.env.DB_USER,      // postgres
+  password: process.env.DB_PASS,  // your password
+  database: process.env.DB_NAME,  // movies
+  port: Number(process.env.DB_PORT) || 5432,
+  ssl: { rejectUnauthorized: false }
+  // family: 4   // optional: comment out if IPv6 issues persist locally
 });
 
 db.connect()
-  .then(() => console.log("Connected to Supabase!"))
-  .catch(err => console.error("Database connection error:", err));
+  .then(() => console.log("✅ Connected to Supabase!"))
+  .catch(err => console.error("❌ Database connection error:", err));
+
+export default db;
 
 // ========================
 // TMDB & UTILITY FUNCTIONS
