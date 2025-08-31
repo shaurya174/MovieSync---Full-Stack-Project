@@ -93,13 +93,13 @@ import homeRoutes from "./routes/home.js";
 
 app.use("/", homeRoutes);
 app.use("/home", homeRoutes);
-app.use("/reviews", reviewsRoutes(sql, TMDB_KEY));
+app.use("/reviews", reviewsRoutes(TMDB_KEY));
 app.use("/trending", trendingRoutes(TMDB_KEY, genreList));
 app.use("/news", newsRoutes(process.env.NEWS_API_KEY));
 app.use("/search", searchRoutes(TMDB_KEY, formatMovieQuery));
 app.use("/watchlist", watchlistRoutes(TMDB_KEY));
 app.use("/contact", contactRoutes);
-app.use("/recommendations", recommendationsRoutes(sql, TMDB_KEY));
+app.use("/recommendations", recommendationsRoutes(TMDB_KEY));
 
 // ========================
 // START SERVER
