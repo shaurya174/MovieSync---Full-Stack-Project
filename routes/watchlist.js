@@ -1,15 +1,15 @@
-// routes/watchlist.js
 import express from "express";
 import axios from "axios";
+import sql from "../db.js"; // postgres client
 
 const router = express.Router();
 
-export default function (db, TMDB_KEY) {
+export default function (TMDB_KEY) {
   // GET /watchlist
   router.get("/", async (req, res) => {
     try {
-      const result = await db.query("SELECT * FROM watchlist");
-      const user_movie_ids = result.rows.map((row) => row.id);
+      const watchlistRows = await sql`SELECT * FROM watchlist`;
+      const user_movie_ids = watchlistRows.map(row => row.id);
       const user_data_movies = [];
 
       for (const movie_id of user_movie_ids) {
@@ -27,29 +27,27 @@ export default function (db, TMDB_KEY) {
   });
 
   // POST /watchlist
-  router.post("/", (req, res) => {
+  router.post("/", async (req, res) => {
     const { movie_id } = req.body;
-    const selectedMovie = movie_id;
 
-    console.log("This movie has been selected:", selectedMovie);
+    try {
+      const result = await sql`
+        INSERT INTO watchlist (id) VALUES (${movie_id})
+        ON CONFLICT (id) DO NOTHING
+        RETURNING id
+      `;
 
-    const query =
-      "INSERT INTO watchlist (id) VALUES ($1) ON CONFLICT (id) DO NOTHING";
-
-    db.query(query, [selectedMovie], (err, result) => {
-      if (err) {
-        console.error("Error inserting movie:", err.stack);
-        return res.status(500).json({ error: "Database insert failed" });
-      }
-
-      if (result.rowCount === 0) {
-        console.log("⚠️ Movie already exists in watchlist:", selectedMovie);
+      if (result.length === 0) {
+        console.log("⚠️ Movie already exists in watchlist:", movie_id);
         return res.json({ message: "Movie is already in your watchlist!" });
       }
 
-      console.log("✅ Movie inserted into watchlist:", selectedMovie);
+      console.log("✅ Movie inserted into watchlist:", movie_id);
       res.json({ message: "Movie received successfully!" });
-    });
+    } catch (err) {
+      console.error("Error inserting movie:", err);
+      res.status(500).json({ error: "Database insert failed" });
+    }
   });
 
   // DELETE /watchlist/:id
@@ -57,12 +55,11 @@ export default function (db, TMDB_KEY) {
     const movieId = parseInt(req.params.id);
 
     try {
-      const deleteResult = await db.query(
-        "DELETE FROM watchlist WHERE id = $1 RETURNING *",
-        [movieId]
-      );
+      const deleteResult = await sql`
+        DELETE FROM watchlist WHERE id = ${movieId} RETURNING *
+      `;
 
-      if (deleteResult.rowCount === 0) {
+      if (deleteResult.length === 0) {
         return res
           .status(404)
           .json({ success: false, message: "Movie not found" });
@@ -77,4 +74,5 @@ export default function (db, TMDB_KEY) {
   });
 
   return router;
-}
+};
+
