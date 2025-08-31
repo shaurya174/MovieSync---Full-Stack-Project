@@ -1,26 +1,29 @@
-// routes/reviews.js
 import express from "express";
 import axios from "axios";
+import sql from "../db.js"; // postgres client
 
 const router = express.Router();
 
-export default function (db, TMDB_KEY) {
+export default function (TMDB_KEY) {
   // GET /reviews
   router.get("/", async (req, res) => {
     try {
-      const watchlistResult = await db.query("SELECT id FROM watchlist");
-      const watchlistIds = watchlistResult.rows.map((r) => r.id);
+      // 1️⃣ Get watchlist IDs
+      const watchlistRows = await sql`SELECT id FROM watchlist`;
+      const watchlistIds = watchlistRows.map(r => r.id);
 
       if (watchlistIds.length === 0) {
         return res.render("reviews", { movies: [] });
       }
 
-      const reviewsResult = await db.query("SELECT id, review FROM reviews");
+      // 2️⃣ Get existing reviews
+      const reviewsRows = await sql`SELECT id, review FROM reviews`;
       const reviewsMap = {};
-      reviewsResult.rows.forEach((r) => {
+      reviewsRows.forEach(r => {
         reviewsMap[r.id] = r.review;
       });
 
+      // 3️⃣ Fetch movie details from TMDB
       const movies = [];
       for (let id of watchlistIds) {
         const response = await axios.get(
@@ -50,18 +53,13 @@ export default function (db, TMDB_KEY) {
     try {
       const { id, review } = req.body;
 
-      const check = await db.query("SELECT * FROM reviews WHERE id = $1", [id]);
+      // Check if review exists
+      const checkRows = await sql`SELECT * FROM reviews WHERE id = ${id}`;
 
-      if (check.rows.length > 0) {
-        await db.query("UPDATE reviews SET review = $1 WHERE id = $2", [
-          review,
-          id,
-        ]);
+      if (checkRows.length > 0) {
+        await sql`UPDATE reviews SET review = ${review} WHERE id = ${id}`;
       } else {
-        await db.query("INSERT INTO reviews (id, review) VALUES ($1, $2)", [
-          id,
-          review,
-        ]);
+        await sql`INSERT INTO reviews (id, review) VALUES (${id}, ${review})`;
       }
 
       res.redirect("/reviews");
@@ -72,4 +70,4 @@ export default function (db, TMDB_KEY) {
   });
 
   return router;
-}
+};
